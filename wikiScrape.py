@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import random
 import time
+
+
 #--------------------------------------------------------
 #----- Faking Websites to Prevent Security Messages -----
 #--------------------------------------------------------
@@ -61,6 +63,7 @@ headers = [
 header_ = random.choice(headers)
 html_hdr = {'User-Agent': header_}
 
+
 #----------------------------
 #----- User Input Topic -----
 #----------------------------
@@ -72,6 +75,7 @@ for i in user_input :
 user_input = ''.join(user_input)
 url = 'http://en.wikipedia.org/wiki/' + user_input
 
+
 #---------------------------------------------------------------------------------------
 #----- Getting Web Data *type chcp 65001 for proper encoding of HTML data to read* -----
 #---------------------------------------------------------------------------------------
@@ -81,7 +85,16 @@ print('Processing: ' + url)
 time.sleep(1)
 page = requests.get(url, headers = html_hdr)
 bs = BeautifulSoup(page.content, 'lxml')
-tags = bs.find_all('a', class_ = 'external text')
-for tag in tags : 
-    print(tag.text + '\n' + tag['href'] + '\n')
 
+
+#--------------------------------------------------------------
+#----- Organizing all the Sources from the Wikipedia Page -----
+#--------------------------------------------------------------
+
+tags = bs.find_all('a', class_ = 'external text')
+siteInfo = []
+for tag in tags : 
+    siteInfo.append([tag.text, tag['href']])
+
+for site in siteInfo : 
+    print(str(siteInfo.index(site) + 1) + '. ' + site[0] + ':\n ' + site[1])
