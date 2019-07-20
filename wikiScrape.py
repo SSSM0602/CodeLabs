@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import requests
 from bs4 import BeautifulSoup
 import random
@@ -11,11 +12,12 @@ root = Tk()
 root.geometry('800x600')
 root.title('WikiScrape')
 
-
-lbl = Label(root, text='Enter research topic:')
+mainLabel = ttk.Label(root, text = 'Welcome to WikiScrape!', font = 68)
+mainLabel.pack()
+lbl = ttk.Label(root, text='Enter research topic:', font = 10)
 lbl.pack()
 
-inp = Entry(root)
+inp = ttk.Entry(root)
 inp.pack()
 
 def add() :  
@@ -105,15 +107,15 @@ def add() :
     #----- Creating Text Element to Hold All Scraped Sources -----
     #-------------------------------------------------------------
 
-    txt = Text(root, width=300, height=200)
+    txt = Text(root, width = 300, height = 200)
     for site in siteInfo : 
-        txt.insert(INSERT, str(siteInfo.index(site) + 1) + '. ' + site[0] + ':\n ' + site[1] + '\n')
+        txt.insert(INSERT, str(siteInfo.index(site) + 1) + '. ' + site[0] + ':\n ' + site[1] + '\n\n')
     #txt.insert(INSERT, )
     txt.config(state='disabled')
     txt.pack()
     
 
-btn = Button(root, text = 'Get Sources', command = add)
+btn = ttk.Button(root, text = 'Get Sources', command = add)
 btn.pack()
 
 
