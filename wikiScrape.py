@@ -12,7 +12,7 @@ root = Tk()
 root.geometry('1366x768')
 root.title('WikiScrape')
 
-mainLabel = Label(root, text='Welcome to WikiScrape!', font=('MS Sans Serif', 68), fg = 'blue')
+mainLabel = Label(root, text='Welcome to WikiScrape!', font=('System', 48), fg = 'blue')
 mainLabel.pack()
 lbl = Label(root, text='Enter research topic:', font=('Times', 18))
 lbl.pack()
@@ -121,3 +121,4 @@ btn.pack()
 
 
 root.mainloop()
+
