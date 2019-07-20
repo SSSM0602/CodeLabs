@@ -9,18 +9,19 @@ import random
 #------------------------------
 
 root = Tk()
-root.geometry('800x600')
+root.geometry('1366x768')
 root.title('WikiScrape')
 
-mainLabel = ttk.Label(root, text = 'Welcome to WikiScrape!', font = 68)
+mainLabel = Label(root, text='Welcome to WikiScrape!', font=('MS Sans Serif', 68), fg = 'blue')
 mainLabel.pack()
-lbl = ttk.Label(root, text='Enter research topic:', font = 10)
+lbl = Label(root, text='Enter research topic:', font=('Times', 18))
 lbl.pack()
 
 inp = ttk.Entry(root)
 inp.pack()
 
-def add() :  
+
+def add():
     #-----------------------------------------------------
     #----- Getting the User Input from Entry Element -----
     #-----------------------------------------------------
@@ -30,7 +31,6 @@ def add() :
             user_input[user_input.index(i)] = '_'
     user_input = ''.join(user_input)
     url = 'http://en.wikipedia.org/wiki/' + user_input
-
 
     #--------------------------------------------------------
     #----- Faking Websites to Prevent Security Messages -----
@@ -107,15 +107,16 @@ def add() :
     #----- Creating Text Element to Hold All Scraped Sources -----
     #-------------------------------------------------------------
 
-    txt = Text(root, width = 300, height = 200)
-    for site in siteInfo : 
-        txt.insert(INSERT, str(siteInfo.index(site) + 1) + '. ' + site[0] + ':\n ' + site[1] + '\n\n')
+    txt = Text(root, width=300, height=200)
+    for site in siteInfo:
+        txt.insert(INSERT, str(siteInfo.index(site) + 1) +
+                   '. ' + site[0] + ':\n ' + site[1] + '\n\n')
     #txt.insert(INSERT, )
     txt.config(state='disabled')
     txt.pack()
-    
 
-btn = ttk.Button(root, text = 'Get Sources', command = add)
+
+btn = ttk.Button(root, text='Get Sources', command=add)
 btn.pack()
 
 
